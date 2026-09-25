@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top Smart Earn - Free Earning</title>
+<style>
+body{margin:0;font-family: Hind Siliguri, sans-serif;background:#f1f5f9;padding:12px}
+.card{background:#fff;max-width:450px;margin:auto;border-radius:18px;padding:20px;box-shadow:0 8px 25px rgba(0,0,0,.08)}
+input,select{width:100%;padding:13px;margin:7px 0;border:1px solid #ddd;border-radius:10px;box-sizing:border-box}
+button{width:100%;padding:13px;border:none;border-radius:10px;font-weight:bold;cursor:pointer;margin-top:8px}
+.btn-green{background:#16a34a;color:#fff}
+.btn-dark{background:#0f172a;color:#fff}
+.task{background:#f8fafc;border:1px solid #e2e8f0;padding:14px;border-radius:12px;margin:10px 0;display:flex;justify-content:space-between;align-items:center}
+.task b{font-size:14px}
+.hidden{display:none}
+.badge{background:#dcfce7;color:#166534;padding:5px 10px;border-radius:20px;font-size:12px}
+.top{background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;padding:18px;border-radius:14px;text-align:center}
+</style>
+</head>
+<body>
+
+<div class="card" id="auth">
+<h2 style="text-align:center">🔥 ফ্রি একাউন্ট খুলুন</h2>
+<input id="num" placeholder="মোবাইল নম্বর">
+<input id="pass" type="password" placeholder="পাসওয়ার্ড">
+<button class="btn-green" onclick="register()">নিবন্ধন করুন / লগইন</button>
+<p style="text-align:center;font-size:12px;color:#64748b">নিবন্ধন করলেই সরাসরি ড্যাশবোর্ডে চলে যাবেন</p>
+</div>
+
+<div class="card hidden" id="dash">
+<div class="top">
+<h3 style="margin:0">ড্যাশবোর্ডে স্বাগতম ✅</h3>
+<p>নম্বর: <span id="dNum"></span></p>
+<h1 style="margin:8px 0">৳<span id="bal">0</span></h1>
+<p style="font-size:13px">দৈনিক ইনকাম: ১০-১০০০ টাকা</p>
+</div>
+
+<div style="margin-top:15px">
+<p>📌 <b>এখানে যে কাজগুলো করতে পারবেন:</b></p>
+<div class="task"><span>✅ Typing কাজ <span class="badge">+10৳</span></span><button onclick="work(10)" style="width:85px" class="btn-green">করুন</button></div>
+<div class="task"><span>✅ Gmail কাজ <span class="badge">+8৳</span></span><button onclick="work(8)" style="width:85px" class="btn-green">করুন</button></div>
+<div class="task"><span>✅ Facebook কাজ <span class="badge">+5৳</span></span><button onclick="work(5)" style="width:85px" class="btn-green">করুন</button></div>
+<div class="task"><span>✅ Math Solve <span class="badge">+7৳</span></span><button onclick="mathWork()" style="width:85px" class="btn-green">করুন</button></div>
+<div class="task"><span>✅ Video Watching <span class="badge">+3৳</span></span><button onclick="work(3)" style="width:85px" class="btn-green">দেখুন</button></div>
+<div class="task"><span>✅ Instagram Sell <span class="badge">+12৳</span></span><button onclick="work(12)" style="width:85px" class="btn-green">করুন</button></div>
+<div class="task"><span>🎁 রেফার বোনাস + মাসিক স্যালারি</span><button onclick="work(20)" style="width:85px;background:#f59e0b;color:#fff;border-radius:8px;border:none;padding:8px">বোনাস</button></div>
+</div>
+
+<div style="margin-top:20px;border-top:1px dashed #ddd;padding-top:15px">
+<h3>💳 উইথড্র সুবিধা</h3>
+<p style="font-size:13px">✔ কোন রেফার ছাড়াই উইথড্র<br>✔ মাত্র ৫০ টাকা হলেই উইথড্র</p>
+<select id="method"><option>bKash</option><option>Nagad</option></select>
+<input id="wNum" placeholder="উইথড্র নম্বর">
+<button class="btn-dark" onclick="withdraw()">উইথড্র করুন</button>
+<p id="wMsg" style="font-size:13px;color:green"></p>
+</div>
+
+<button onclick="logout()" style="background:#fee2e2;color:#b91c1c;margin-top:15px">লগআউট</button>
+</div>
+
+<script>
+let users = JSON.parse(localStorage.getItem('tse_users2')||'{}');
+function register(){
+ let n=document.getElementById('num').value.trim();
+ let p=document.getElementById('pass').value.trim();
+ if(!n||!p) return alert("নম্বর পাসওয়ার্ড দিন");
+ if(!users[n]) users[n]={pass:p,bal:0};
+ else if(users[n].pass!=p) return alert("পাসওয়ার্ড ভুল");
+ localStorage.setItem('tse_users2',JSON.stringify(users));
+ localStorage.setItem('tse_cur2',n);
+ show(n);
+}
+function show(n){
+ document.getElementById('auth').classList.add('hidden');
+ document.getElementById('dash').classList.remove('hidden');
+ document.getElementById('dNum').innerText=n;
+ document.getElementById('bal').innerText=users[n].bal;
+}
+function work(tk){
+ let c=localStorage.getItem('tse_cur2');
+ users[c].bal+=tk;
+ save(); alert(tk+" টাকা যোগ হয়েছে!");
+}
+function mathWork(){
+ let a=Math.floor(Math.random()*20), b=Math.floor(Math.random()*20);
+ let ans=prompt(`Math Solve: ${a} + ${b} =?`);
+ if(parseInt(ans)==a+b) work(7); else alert("ভুল হয়েছে, আবার চেষ্টা করুন");
+}
+function save(){
+ localStorage.setItem('tse_users2',JSON.stringify(users));
+ let c=localStorage.getItem('tse_cur2');
+ document.getElementById('bal').innerText=users[c].bal;
+}
+function withdraw(){
+ let c=localStorage.getItem('tse_cur2');
+ if(users[c].bal<50) return alert("উইথড্র করতে মিনিমাম ৫০ টাকা লাগবে");
+ let num=document.getElementById('wNum').value;
+ if(!num) return alert("নম্বর দিন");
+ document.getElementById('wMsg').innerText="✅ উইথড্র রিকোয়েস্ট পাঠানো হয়েছে! 24 ঘন্টার মধ্যে পাবেন।";
+ users[c].bal=0; save();
+}
+function logout(){ localStorage.removeItem('tse_cur2'); location.reload(); }
+window.onload=()=>{ let c=localStorage.getItem('tse_cur2'); if(c&&users[c]) show(c); }
+</script>
+</body>
+  </html>
