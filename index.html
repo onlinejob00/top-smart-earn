@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>top-smart-earn | Admin Shourov</title>
+<style>
+body{background:#000;color:#fff;font-family:sans-serif;margin:0}
+.box{max-width:400px;margin:auto;padding:15px}
+.card{background:#111;border:1px solid #222;border-radius:15px;padding:15px;margin:10px 0}
+input,button{width:100%;padding:12px;border-radius:10px;border:1px solid #333;margin-top:10px}
+button{background:#00ff88;color:#000;font-weight:900;border:none}
+h1{color:#00ff88;text-align:center}
+</style>
+</head>
+<body>
+<div class="box">
+<h1>top-smart-earn</h1>
+<p style="text-align:center;color:#888;font-size:12px">Admin Shourov | 01734770374</p>
+
+<div class="card" id="auth">
+<h3>নিবন্ধন / লগইন</h3>
+<input id="ph" placeholder="মোবাইল 01XXXXXXXXX">
+<input id="ps" type="password" placeholder="পাসওয়ার্ড">
+<input id="rf" placeholder="রেফার কোড">
+<button onclick="login()">শুরু করুন</button>
+<p style="font-size:11px;color:#aaa;margin-top:8px">ভেরিফাই: 01734770374 এ 10৳ Send Money + Txn ID<br>Typing 0.20৳ | Gmail 10৳ | FB 3৳ | Math 0.50৳ | Video 0.15৳ | Insta 0.10৳ | রেফার 5৳</p>
+</div>
+
+<div class="card" id="verify" style="display:none">
+<h3>💳 ভেরিফাই করুন - 10৳</h3>
+<p style="font-size:12px;color:#ff6b6b">Admin Shourov এর 01734770374 নাম্বারে 10৳ পাঠান</p>
+<input id="txn" placeholder="Transaction ID দিন">
+<button onclick="doVerify()">সাবমিট</button>
+<div id="vmsg" style="color:#00ff88;font-size:12px;margin-top:5px"></div>
+</div>
+
+<div class="card" id="dash" style="display:none">
+<h3>Welcome - <span id="uname"></span></h3>
+<p>ব্যালেন্স: ৳<span id="bal">0</span> | রেফার: <span id="rc">0</span>/40</p>
+<hr style="margin:10px 0;border-color:#222">
+<button onclick="add(0.20)">Typing +0.20৳</button>
+<button onclick="add(10)">Gmail +10৳</button>
+<button onclick="add(3)">Facebook +3৳</button>
+<button onclick="add(0.50)">Math +0.50৳</button>
+<button onclick="add(0.15)">Video +0.15৳</button>
+<button onclick="add(0.10)">Instagram +0.10৳</button>
+<input id="bk" placeholder="বিকাশ নাম্বার (50৳ হলেই উইথড্র)">
+<button style="background:#f1c40f" onclick="wd()">উইথড্র</button>
+<p style="font-size:11px;word-break:break-all;margin-top:8px">রেফার লিংক: <span id="rl"></span></p>
+<p style="font-size:11px;color:#888">40 রেফারে 200৳ বোনাস - রেফার ছাড়াই উইথড্র</p>
+</div>
+
+<div class="card" id="admin" style="display:none">
+<h3 style="color:#ff4757">ADMIN Shourov Panel</h3>
+<div id="plist"></div>
+<div id="ulist" style="margin-top:10px;font-size:12px"></div>
+</div>
+</div>
+
+<script>
+function getU(){return JSON.parse(localStorage.getItem('top_final')||'[]')}
+function saveU(u){localStorage.setItem('top_final',JSON.stringify(u))}
+let cur=null;
+function login(){
+let ph=document.getElementById('ph').value.trim(), ps=document.getElementById('ps').value.trim(), rf=document.getElementById('rf').value.trim();
+if(ph.length<11)return alert('নাম্বার দিন');
+let users=getU();
+if(ph=='01734770374'&&ps=='admin123'){document.getElementById('auth').style.display='none';document.getElementById('admin').style.display='block';renderAdmin();return;}
+let u=users.find(x=>x.phone==ph);
+if(!u){if(rf){let r=users.find(x=>x.myRef==rf||x.phone==rf);if(r){r.balance+=5;r.refCount++;if(r.refCount==40)r.balance+=200;}}let nu={phone:ph,pass:ps,balance:0,myRef:ph.slice(-4)+Math.floor(Math.random()*90+10),verified:false,txn:'',refCount:0};users.push(nu);saveU(users);cur=nu;}
+else{if(u.pass!=ps)return alert('পাসওয়ার্ড ভুল');cur=u;}
+if(!cur.verified){document.getElementById('auth').style.display='none';document.getElementById('verify').style.display='block';if(cur.txn)document.getElementById('vmsg').innerText='Pending: '+cur.txn}else showDash();
+}
+function doVerify(){
+let t=document.getElementById('txn').value.trim();if(t.length<4)return alert('Txn ID দিন');
+let users=getU();let i=users.findIndex(x=>x.phone==cur.phone);users[i].txn=t;saveU(users);
+document.getElementById('vmsg').innerText='জমা হয়েছে: '+t+' | Admin Shourov Approve করবে';
+}
+function showDash(){
+document.getElementById('auth').style.display='none';document.getElementById('verify').style.display='none';document.getElementById('dash').style.display='block';
+document.getElementById('uname').innerText=cur.phone;document.getElementById('bal').innerText=cur.balance;document.getElementById('rc').innerText=cur.refCount;
+document.getElementById('rl').innerText='https://onlinejob00.github.io/top-smart-earn/?ref='+cur.myRef;
+}
+function add(a){cur.balance+=a;let users=getU();let i=users.findIndex(x=>x.phone==cur.phone);users[i].balance=cur.balance;saveU(users);document.getElementById('bal').innerText=cur.balance.toFixed(2);alert('+'+a+'৳ যোগ');}
+function wd(){if(cur.balance<50)return alert('50৳ লাগবে');cur.balance-=50;let users=getU();let i=users.findIndex(x=>x.phone==cur.phone);users[i].balance=cur.balance;saveU(users);document.getElementById('bal').innerText=cur.balance;alert('উইথড্র সফল');}
+function renderAdmin(){let users=getU();let p='';users.filter(u=>!u.verified&&u.txn).forEach(u=>{p+=`<div>${u.phone} - ${u.txn} <button onclick="approve('${u.phone}')">Approve</button></div>`});document.getElementById('plist').innerHTML=p||'No Pending';let all='';users.forEach(u=>{all+=`<div>${u.phone} ${u.verified?'✅':''} ${u.balance}৳ ${u.txn}</div>`});document.getElementById('ulist').innerHTML=all;}
+function approve(ph){let users=getU();let u=users.find(x=>x.phone==ph);u.verified=true;saveU(users);renderAdmin();alert('Approved');}
+let pr=new URLSearchParams(location.search).get('ref');if(pr)document.getElementById('rf').value=pr;
+</script>
+</body>
+  </html>
