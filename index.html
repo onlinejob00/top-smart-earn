@@ -1,0 +1,32 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TOP-SMART-EARN</title>
+<style>body{margin:0;background:#070a13;color:#fff;font-family:sans-serif}.t{text-align:center;padding:20px}.t h1{font-size:28px}input{width:100%;padding:12px;margin:6px 0;border-radius:10px;border:0}button{width:100%;padding:12px;border-radius:10px;border:0;background:#00d68f;color:#fff;font-weight:800}.box{background:#111827;padding:14px;border-radius:16px;margin:10px}</style>
+</head><body>
+<div id="a" class="box" style="max-width:360px;margin:30px auto"><div class="t"><h1>TOP-SMART-EARN</h1></div>
+<input id="n" placeholder="নাম"><input id="m" value="01700000000"><input id="p" type="password" value="123456">
+<button onclick="go()">নিবন্ধন / লগইন - ক্লিক করুন</button>
+<button onclick="localStorage.clear();alert('Clear Done, Reload');location.reload()" style="background:#ef4444;margin-top:8px">ডাটা ক্লিয়ার</button>
+</div>
+<div id="b" style="display:none"><div class="t"><h1>TOP-SMART-EARN</h1><p>ID:<span id="uid"></span> | ৳<span id="bal">0</span> | <span id="uname"></span></p></div>
+<div style="background:#fff;color:#111;margin:10px;border-radius:20px;padding:12px">
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center;font-size:10px">
+<div style="background:#f0fdf9;padding:8px;border-radius:12px;border:1px solid #00d68f" onclick="alert('FB S1 3.50৳')">📘<br>FB S1<br>3.5৳</div>
+<div style="background:#f0fdf9;padding:8px;border-radius:12px;border:1px solid #00d68f" onclick="alert('Gmail 10৳')">✉️<br>Gmail<br>10৳</div>
+<div style="background:#f0fdf9;padding:8px;border-radius:12px;border:1px solid #00d68f">👥<br>Refer<br>20৳</div>
+<div style="background:#f0fdf9;padding:8px;border-radius:12px;border:1px solid #00d68f">🎁<br>Daily<br>ON</div>
+<div>📘<br>FB S2<br>2৳</div><div>📸<br>Insta<br>2.5৳</div><div>⌨️<br>Typing<br>7৳</div><div>🎰<br>Slot</div>
+</div>
+<p style="font-size:12px;margin-top:12px">✅ লগইন সফল! এখন সব কাজ দেখতে পাচ্ছেন।</p>
+<button onclick="localStorage.removeItem('c');location.reload()">লগআউট</button>
+</div></div>
+<script>
+function go(){
+ let nm=document.getElementById('n').value||'MD.Shourov', mb=document.getElementById('m').value.trim(), pw=document.getElementById('p').value.trim();
+ if(pw.length<3){alert('পাস দিন');return;}
+ let U=JSON.parse(localStorage.getItem('u')||'[]');
+ let ex=U.find(x=>x.m==mb);
+ if(ex){localStorage.setItem('c',ex.id);}else{U.push({id:U.length+1,n:nm,m:mb,b:0});localStorage.setItem('u',JSON.stringify(U));localStorage.setItem('c',U.length);}
+ document.getElementById('a').style.display='none';document.getElementById('b').style.display='block';
+ let cur=U.find(x=>x.id==+localStorage.getItem('c'));document.getElementById('uname').innerText=cur.n;document.getElementById('uid').innerText=cur.id;document.getElementById('bal').innerText=cur.b;
+}
+let c=localStorage.getItem('c');if(c){document.getElementById('a').style.display='none';document.getElementById('b').style.display='block';try{let U=JSON.parse(localStorage.getItem('u')||'[]');let cur=U.find(x=>x.id==+c);if(cur){document.getElementById('uname').innerText=cur.n;document.getElementById('uid').innerText=cur.id;}}catch(e){}}
+</script></body></html>
