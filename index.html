@@ -1,0 +1,36 @@
+<!DOCTYPE html><html lang="bn"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TOP-SMART-EARN PRIME</title>
+<style>
+*{box-sizing:border-box;font-family:Inter,sans-serif}body{margin:0;background:#070a13;color:#fff}
+.t{padding:20px 0 6px;text-align:center}.t h1{margin:0;font-size:28px;font-weight:900;background:linear-gradient(#fff,#94a3b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.c{background:#fff;margin:12px;border-radius:24px;padding:12px;color:#111}
+.g{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.i{background:#f8fafc;border-radius:16px;padding:8px 2px;text-align:center;border:1.5px solid #00d68f;cursor:pointer}
+.i p{margin:3px 0 0;font-size:8px;font-weight:700}.i small{font-size:7px;font-weight:800;color:#00b894}
+.b{width:36px;height:36px;margin:auto;border-radius:12px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:17px}
+.m{position:fixed;inset:0;background:#0009;display:none;align-items:center;justify-content:center;z-index:99;padding:12px}
+.mx{background:#fff;width:100%;max-width:400px;border-radius:18px;padding:12px;color:#111;max-height:90vh;overflow:auto}
+.tab{display:flex;background:#e5e7eb;border-radius:10px;padding:3px;margin-bottom:10px}.tab div{flex:1;text-align:center;padding:8px;font-size:11px;font-weight:800;border-radius:8px;cursor:pointer}.tab .on{background:#111827;color:#fff}
+input,textarea,select{width:100%;padding:10px;border-radius:10px;border:1px solid #e5e7eb;margin:5px 0;font-size:12px}button{width:100%;padding:11px;border-radius:10px;border:0;background:#00d68f;color:#fff;font-weight:800}
+.n{position:fixed;bottom:8px;left:8px;right:8px;background:#111827;border-radius:22px;display:flex;justify-content:space-around;padding:8px}
+.n div{font-size:8px;color:#6b7280;text-align:center;cursor:pointer}.n .a{color:#3b82f6}
+.hist{font-size:9px;background:#f8fafc;padding:6px;border-radius:8px;margin:3px 0;display:flex;justify-content:space-between}
+</style></head><body>
+<div id="auth" style="padding:18px;max-width:380px;margin:auto"><div class="t"><h1>TOP-SMART-<br>EARN</h1><p style="font-size:8px;opacity:.6;letter-spacing:2px">PRIME OFFICIAL</p></div>
+<div style="background:#111827;padding:14px;border-radius:18px;margin-top:10px">
+<div class="tab"><div id="tR" class="on" onclick="setTab('R')">নিবন্ধন</div><div id="tL" onclick="setTab('L')">লগইন</div></div>
+<div id="regBox"><input id="nm" placeholder="আসল নাম"><input id="mb" placeholder="মোবাইল নম্বর"><input id="pw" type="password" placeholder="পাস ৬ সংখ্যা"><button onclick="doReg()">নিবন্ধন করুন</button></div>
+<div id="logBox" style="display:none"><input id="lmb" placeholder="মোবাইল নম্বর"><input id="lpw" type="password" placeholder="পাসওয়ার্ড"><button onclick="doLog()" style="background:#3b82f6">লগইন করুন</button></div>
+<p style="font-size:7px;opacity:.5;text-align:center;margin-top:6px">Admin: 01700000000 / 123456</p></div></div>
+
+<div id="dash" style="display:none"><div class="t"><h1>TOP-SMART-EARN</h1><div style="font-size:9px;opacity:.7">ID:<span id="uid"></span> • <span id="un"></span> • ৳<b id="bl">0</b></div></div>
+<div class="c">
+<div style="font-size:11px;font-weight:800;margin-bottom:10px">🚀 আমাদের প্রজেক্ট সমূহ <span style="background:#00d68f;color:#fff;font-size:7px;padding:2px 6px;border-radius:8px">9 ACTIVE</span></div>
+<div class="g">
+<div class="i" onclick="openTask('typing')"><div class="b">⌨️</div><p>Typing</p><small>7৳ ON</small></div>
+<div class="i" onclick="openTask('video')"><div class="b">🎥</div><p>Video</p><small>3৳ ON</small></div>
+<div class="i" onclick="openTask('verified')"><div class="b">✅</div><p>Verified</p><small style="color:#229ED9">FREE</small></div>
+<div class="i" onclick="openTask('refer')"><div class="b">👥</div><p>Refer</p><small>20৳ ON</small></div>
+<div class="i" onclick="openTask('daily')"><div class="b">🎁</div><p>Daily</p><small>5৳ ON</small></div>
+<div class="i" onclick="openTask('target')"><div class="b">🎯</div><p>Target</p><small>ON</small></div>
+<div class="i"
