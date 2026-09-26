@@ -1,0 +1,87 @@
+<!DOCTYPE html><html lang="bn"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TOP-SMART-EARN</title>
+<style>
+*{box-sizing:border-box;font-family:sans-serif}body{margin:0;background:#070a13;color:#fff}
+.t{padding:22px 0 6px;text-align:center}.t h1{margin:0;font-size:30px;font-weight:900;background:linear-gradient(#fff,#94a3b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.c{background:#fff;margin:10px;border-radius:22px;padding:12px;color:#111}
+.v{background:linear-gradient(135deg,#fef3c7,#fde68a);border:1.5px solid #f59e0b;border-radius:14px;padding:10px;margin-bottom:10px}
+.g{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.i{background:#f8fafc;border-radius:14px;padding:7px 2px;text-align:center;position:relative;border:1px solid #eef2ff}
+.i.on{border:1.5px solid #00d68f;background:#f0fdf9}.i p{margin:3px 0 0;font-size:8px;font-weight:700}.i small{font-size:7px;font-weight:800}
+.b{width:36px;height:36px;margin:auto;border-radius:11px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:17px}
+input,select{width:100%;padding:10px;border-radius:10px;border:1px solid #e5e7eb;margin:4px 0;font-size:12px}button{width:100%;padding:10px;border-radius:10px;border:0;background:#00d68f;color:#fff;font-weight:800;font-size:12px;cursor:pointer}
+.n{position:fixed;bottom:6px;left:6px;right:6px;background:#111827;border-radius:20px;display:flex;justify-content:space-around;padding:7px;border:1px solid #ffffff14}.n div{font-size:7px;color:#6b7280;text-align:center}.n .a{color:#3b82f6}
+</style></head><body>
+<div id="auth" style="padding:20px 12px;max-width:380px;margin:auto"><div class="t"><h1>TOP-SMART-EARN</h1><p style="font-size:8px;opacity:.6">SMART EARNING PLATFORM</p></div>
+<div style="background:#111827;padding:14px;border-radius:16px;border:1px solid #ffffff14;margin-top:8px">
+<input id="nm" placeholder="আসল নাম (MD.Shourov)"><input id="mb" type="tel" placeholder="মোবাইল (01700000000)"><input id="pw" type="password" placeholder="পাস ৬ সংখ্যা"><button onclick="reg()" style="background:#00b894">নিবন্ধন / লগইন</button>
+<div style="margin-top:8px;display:flex;gap:6px"><button onclick="clearAll()" style="background:#ef4444;font-size:10px">ডাটা ক্লিয়ার (যদি লগইন না হয়)</button></div>
+</div></div>
+
+<div id="dash" style="display:none">
+<div class="t"><h1>TOP-SMART-EARN</h1><div style="font-size:8px;opacity:.7">ID:<span id="uid"></span> • <span id="un"></span> • ৳<b id="bl">0</b> • <span id="vs">UNVERIFIED</span></div></div>
+<div class="c">
+<div id="vb" class="v"><b>🔔 ভেরিফাই করুন - ১০ টাকা</b><p style="font-size:8px">Rocket: <b>01777414576</b> <span onclick="navigator.clipboard.writeText('01777414576');alert('কপি')" style="color:blue;cursor:pointer">Copy</span></p><select id="vm"><option>Rocket</option></select><input id="vt" placeholder="Transaction ID"><button onclick="subV()" style="background:#f59e0b">ট্রানজেকশন জমা দিন</button><p style="font-size:7px;color:#b45309">ভেরিফাই ছাড়া শুধু Gmail+Refer পারবেন</p></div>
+<div style="font-size:10px;font-weight:800;margin:8px 0">🚀 আমাদের প্রজেক্ট সমূহ</div>
+<div class="g">
+<div class="i on" onclick="fb(1)"><div class="b">📘</div><p>FB S1</p><small style="color:#00b894">3.50৳ ON</small></div>
+<div class="i on" onclick="fb(2)"><div class="b">📘</div><p>FB S2</p><small style="color:#00b894">2.00৳ ON</small></div>
+<div class="i on" onclick="gm()"><div class="b">✉️</div><p>Gmail</p><small style="color:#00b894">10৳ ON</small></div>
+<div class="i on" onclick="insta()"><div class="b">📸</div><p>Insta</p><small style="color:#00b894">2.50৳ ON</small></div>
+<div class="i on" onclick="rf()"><div class="b">👥</div><p>Reffer</p><small style="color:#00b894">20৳ ON</small></div>
+<div class="i on" onclick="typ()"><div class="b">⌨️</div><p>Typing</p><small style="color:#00b894">7৳ ON</small></div>
+<div class="i on" onclick="slot()"><div class="b">🎰</div><p>Slot</p><small>ডিপোজিট</small></div>
+<div class="i on" onclick="watch()"><div class="b">🎥</div><p>Watch</p><small>ON</small></div>
+<div class="i on" onclick="target()"><div class="b">🎯</div><p>Target</p><small>ON</small></div>
+<div class="i on" onclick="dc()"><div class="b">🎁</div><p>Daily</p><small style="color:#00b894">ON</small></div>
+<div class="i on" onclick="gift()"><div class="b">🎁</div><p>Gift</p><small>ON</small></div>
+</div>
+<div id="slotBox" style="display:none;margin-top:10px;background:#eff6ff;padding:9px;border-radius:12px;border:1px solid #bfdbfe">
+<b style="font-size:10px">🎰 Slot - ডিপোজিট</b><select id="sm"><option>bKash</option><option>Nagad</option><option selected>Rocket</option></select>
+<div style="font-size:9px;background:#fff;padding:6px;border-radius:8px;margin:4px 0">Number: <b>01777414576</b></div>
+<select id="sp"><option value="150">ডিপোজিট ১৫০৳ প্ল্যান</option><option value="500">ডিপোজিট ৫০০৳ প্ল্যান</option></select><input id="stx" placeholder="Transaction ID"><button onclick="subS()" style="background:#2563eb">জমা দিন</button>
+</div>
+<div style="margin-top:10px;background:#f8fafc;padding:8px;border-radius:12px"><b style="font-size:9px">💳 উত্তোলন ৫৫/১১৫/৫২৫</b><select id="wa"><option>55</option><option>115</option><option>525</option></select><select id="wm"><option>bKash</option><option>Nagad</option><option>Rocket</option><option>Upay</option></select><input id="wn" placeholder="নম্বর"><button onclick="wd()">রিকোয়েস্ট</button></div>
+<div style="margin-top:8px;background:#f8fafc;padding:8px;border-radius:12px"><b style="font-size:9px">🔗 রেফার লিংক</b><input id="rl" readonly><button onclick="navigator.clipboard.writeText(rl.value);alert('কপি')" style="background:#0f172a">কপি</button></div>
+<div id="ad" style="display:none;margin-top:8px;background:#fee2e2;padding:8px;border-radius:10px;color:#111;font-size:9px"><b>👑 Owner Panel</b><div id="adBody"></div>
+<div style="margin-top:6px"><input id="uidc" placeholder="User ID" style="width:50px;display:inline"><input id="addb" placeholder="+/-" style="width:50px;display:inline"><button onclick="addBal()" style="width:auto;display:inline;padding:4px 6px;font-size:8px">Add</button><button onclick="sus()" style="width:auto;display:inline;padding:4px 6px;background:#ef4444;font-size:8px">Ban</button></div>
+</div>
+</div><div style="height:70px"></div>
+<div class="n"><div>🎧<br>Help</div><div>👛<br>Wallet</div><div class="a"><div style="background:#3b82f6;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:-22px auto 2px;color:#fff">🏠</div>HOME</div><div>👥<br>Team</div><div onclick="logout()">👤<br>Profile</div></div></div>
+<script>
+function getU(){try{return JSON.parse(localStorage.getItem('tse_u')||'[]')}catch(e){return []}}
+let U=getU(),cur=localStorage.getItem('tse_c');
+function saveU(){localStorage.setItem('tse_u',JSON.stringify(U));}
+function reg(){
+ let n=document.getElementById('nm').value.trim(),m=document.getElementById('mb').value.trim(),p=document.getElementById('pw').value.trim();
+ if(!n||!m||p.length<6){alert('নাম, মোবাইল, ৬ সংখ্যা পাস দিন');return;}
+ U=getU();
+ let ex=U.find(x=>x.m==m);
+ if(ex){if(ex.p!=p){alert('পাস ভুল');return;}if(ex.ban){alert('Suspended');return;}cur=ex.id;}
+ else{let rb=new URLSearchParams(location.search).get('ref');let nid=U.length?Math.max(...U.map(x=>x.id))+1:1;U.push({id:nid,n:n,m:m,p:p,b:0,rb:rb?+rb:null,gc:0,ver:false,ban:false});cur=nid;saveU();}
+ localStorage.setItem('tse_c',cur);show();
+}
+function show(){
+ U=getU();let u=U.find(x=>x.id==+cur);if(!u){logout();return;}
+ document.getElementById('auth').style.display='none';document.getElementById('dash').style.display='block';
+ document.getElementById('un').innerText=u.n;document.getElementById('uid').innerText=u.id;document.getElementById('bl').innerText=u.b;
+ document.getElementById('rl').value=location.origin+location.pathname+'?ref='+u.id;
+ let vs=document.getElementById('vs');vs.innerText=u.ver?'VERIFIED':'UNVERIFIED';vs.style.background=u.ver?'#10b981':'#ef4444';vs.style.padding='2px 6px';vs.style.borderRadius='10px';vs.style.color='#fff';vs.style.fontSize='7px';
+ document.getElementById('vb').style.display=u.ver?'none':'block';
+ if(u.m=='01700000000'){document.getElementById('ad').style.display='block';renderAd();}
+}
+function clearAll(){if(confirm('সব ডাটা ক্লিয়ার করবেন?')){localStorage.clear();location.reload();}}
+function logout(){localStorage.removeItem('tse_c');location.reload();}
+function subV(){let t=document.getElementById('vt').value.trim();if(!t)return alert('TxID');let V=JSON.parse(localStorage.getItem('tse_v')||'[]');V.push({id:Date.now(),uid:+cur,tx:t});localStorage.setItem('tse_v',JSON.stringify(V));alert('Verify জমা হয়েছে');}
+function subS(){let t=document.getElementById('stx').value.trim();if(!t)return alert('TxID');let S=JSON.parse(localStorage.getItem('tse_s')||'[]');S.push({id:Date.now(),uid:+cur,am:document.getElementById('sp').value,tx:t});localStorage.setItem('tse_s',JSON.stringify(S));alert('Slot জমা হয়েছে');}
+function gm(){let e=prompt('Gmail:'),ps=prompt('Pass:');if(!e)return;let G=JSON.parse(localStorage.getItem('tse_g')||'[]');G.push({id:Date.now(),uid:+cur,e:e});localStorage.setItem('tse_g',JSON.stringify(G));alert('Gmail জমা');}
+function fb(t){let U2=getU();let u=U2.find(x=>x.id==+cur);if(!u.ver)return alert('ভেরিফাই করুন');let l=prompt('FB Link:'),p=prompt('Pass:');if(!l)return;let F=JSON.parse(localStorage.getItem('tse_f')||'[]');F.push({id:Date.now(),uid:+cur,t:t,l:l});localStorage.setItem('tse_f',JSON.stringify(F));alert('FB S'+t+' জমা');}
+function insta(){let u=getU().find(x=>x.id==+cur);if(!u.ver)return alert('ভেরিফাই');alert('Insta 2.50৳ ON');gm();}
+function typ(){let u=getU().find(x=>x.id==+cur);if(!u.ver)return alert('ভেরিফাই');alert('Typing 7৳');}
+function slot(){let b=document.getElementById('slotBox');b.style.display=b.style.display=='none'?'block':'none';}
+function watch(){alert('Watch ON');}function target(){alert('Target ON');}function gift(){let c=prompt('Gift Code:');if(c=='BONUS10'){let U2=getU();let u=U2.find(x=>x.id==+cur);u.b+=10;localStorage.setItem('tse_u',JSON.stringify(U2));document.getElementById('bl').innerText=u.b;alert('10৳');}}
+function wd(){let U2=getU();let u=U2.find(x=>x.id==+cur);let am=+document.getElementById('wa').value;if(u.b<am)return alert(am+' লাগবে');let W=JSON.parse(localStorage.getItem('tse_w')||'[]');W.push({id:Date.now(),uid:+cur,am:am,m:document.getElementById('wm').value,n:document.getElementById('wn').value});localStorage.setItem('tse_w',JSON.stringify(W));alert('উত্তোলন গেছে');}
+function dc(){let U2=getU();let u=U2.find(x=>x.id==+cur);let refs=U2.filter(x=>x.rb==+cur&&x.gc>=3);if(!refs.length)return alert('৩টা Gmail হয়নি');u.b+=20*refs.length;localStorage.setItem('tse_u',JSON.stringify(U2));document.getElementById('bl').innerText=u.b;alert('20৳ Claim');}
+function rf(){alert('লিংক কপি করুন');}
+function renderAd(){let V=JSON.parse(localStorage.getItem('tse_v')||'[]'),S=JSON.parse(localStorage.getItem('tse_s')||'[]'),G=JSON.parse(localStorage.getItem('tse_g')||'[]'),F=JSON.parse(localStorage.getItem('tse_f')||'[]'),W=JSON.parse(localStorage.getItem('tse_w')||'[]');let h=`M:${U.length} V:${V.length} S:${S.length} G:${G.length} W:${W.length}<br><br>Verify:<br>`+V.map(x=>`U${x.uid} ${x.tx} <button onclick="av(${x.id})" style="width:auto;padding:2px 5px;font-size:8px">Verify</button>`).join('<br>')+'<br><br>Slot:<br>'+S.map(x=>`U${x.uid} ${x.am} <button onclick="as(${x.id})" style="width:auto;padding:2px 5px;font-size:8px">Add</button>`).join('<br>')+'<br><br>Gmail:<br>'+G.map(x=>`U${x.uid} ${x.e} <button onclick="ag(${x.id})" style="width:auto;padding:2px 5px;font-size:8px">10</button>`).join('<br>')+'<br><br>FB:<br>'+F.map(x=>`U${x.uid} S${x.t} <button onclick="af(${x.id},${x.t})" style="width:auto;padding:2px 5px;font-size:8px">${x.t==1?3.5:2}</button>`).join('<br>')+'<br><br>Withdraw:<br>'+W.map(x=>`U${x.uid} ${x.am} <button onclick="aw(${x.id})" style="width:auto;padding:2px 5px;font-size:8px">Paid</button>`).join('<br>');document.getElementById('adBody').innerHTML=h;}
+window.av=function(id){let V=JSON.parse(localStorage.getItem('tse_v')||'[]');let r=V.find(x=>x.id==id);U=getU();let u=U.find(x=>x.id==r.uid);u.ver=true;saveU();localStorage
